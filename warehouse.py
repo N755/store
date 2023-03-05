@@ -98,6 +98,8 @@ while action != "exit":
         if action == "exit":
             print("Exiting... Bye-bye!")
             exit()
+    else:
+        print("Oops, wrong choice. Please enter again.")
 
         
        
