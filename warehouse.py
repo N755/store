@@ -44,8 +44,8 @@ def add_item():
 def sell_item():
     sell_name = input("Enter item to sell: ")
     sell_quantity = float(input("Enter quantity to sell: "))
-    sell_unit = input("Enter unit of item to sell: ")
-    sell_unit_price = input("Enter unit price of item to sell: ")
+    sell_unit = input("Enter unit of item to sell: ") 
+    sell_unit_price = input("Enter unit price of item to sell: ") 
     for item in items:
         if sell_name == item['name']:
             item['quantity'] = float(item['quantity']) - sell_quantity
@@ -54,7 +54,7 @@ def sell_item():
             get_items()
             sold_items.append({'name': sell_name, 'quantity': sell_quantity, 'unit': sell_unit, 'unit_price': sell_unit_price})
             return
-    print (f"Successfully sold {sell_quantity} {sell_unit} of {sell_name}")
+    print (f"Successfully sold {sell_quantity} {sell_unit} of {sell_name}") 
 
 def get_costs():
     costs = [float(item['quantity']) * float(item['unit_price']) for item in items]
@@ -77,8 +77,10 @@ def show_revenue():
 
 action = " "
 while action != "exit":
-    action = input("What would you like to do? ")
+    action = input("What would you like to do? (enter help for other information) ")
     if action in ('exit', 'help', 'show', 'showsold', 'add', 'sell', 'show_revenue', 'load', 'save'):
+        if action == "help":
+            print("Make your choice: show, add, sell, showsold, show_revenue, save, load or exit")
         if action == "add":
             add_item()
         if action == "show":
