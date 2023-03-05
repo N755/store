@@ -1,8 +1,28 @@
+import csv
+
 items = [
     {'name': 'Apple', 'quantity': '25', 'unit': 'kg', 'unit_price': '30'},
     {'name': 'Banana', 'quantity': '18', 'unit': 'kg', 'unit_price': '45'},
     {'name': 'Orange', 'quantity': '20', 'unit': 'kg', 'unit_price': '60'}
 ]
+def export_items_to_csv():
+    with open ('magazyn.csv', mode='w') as csv_file:
+        fieldnames = ['name', 'quantity', 'unit', 'unit_price']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(items)
+        print ("Successfully exported data to magazyn.csv")
+
+def load_items_from_csv():
+    items.clear()
+    with open ('magazyn.csv', mode= 'r') as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            items.append(row)
+    print ("Successfully loaded data from magazyn.csv")
+    return items
+        
+        
 sold_items = [ ]
 
 def get_items(): 
@@ -69,7 +89,12 @@ while action != "exit":
             print(sold_items)
         if action == "show_revenue":
             show_revenue()
+        if action == "save":
+            export_items_to_csv()
+        if action == "load":
+            load_items_from_csv()
         if action == "exit":
+            print("Exiting... Bye-bye!")
             exit()
 
         
