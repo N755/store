@@ -1,3 +1,4 @@
+import sys
 import csv
 
 items = [
@@ -5,6 +6,8 @@ items = [
     {'name': 'Banana', 'quantity': '18', 'unit': 'kg', 'unit_price': '45'},
     {'name': 'Orange', 'quantity': '20', 'unit': 'kg', 'unit_price': '60'}
 ]
+
+csv_path = "C:/Users/Proffessional/Desktop/Kodilla/store/magazyn.csv"
 def export_items_to_csv():
     with open ('magazyn.csv', mode='w') as csv_file:
         fieldnames = ['name', 'quantity', 'unit', 'unit_price']
@@ -13,15 +16,19 @@ def export_items_to_csv():
         writer.writerows(items)
         print ("Successfully exported data to magazyn.csv")
 
-def load_items_from_csv():
+def load_items_from_csv(csv_path):
     items.clear()
-    with open ('magazyn.csv', mode= 'r') as csv_file:
+    with open (csv_path, mode= 'r') as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
             items.append(row)
     print ("Successfully loaded data from magazyn.csv")
     return items
-        
+
+if __name__ == "__main__":
+    csv_path = sys.argv[1]  
+    items = load_items_from_csv(csv_path)
+    print(items)
         
 sold_items = [ ]
 
