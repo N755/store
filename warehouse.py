@@ -7,9 +7,10 @@ items = [
     {'name': 'Orange', 'quantity': '20', 'unit': 'kg', 'unit_price': '60'}
 ]
 
-csv_path = "C:/Users/Proffessional/Desktop/Kodilla/store/magazyn.csv"
+csv_path = "C:/Users/Professional/Desktop/Kodilla/store/magazyn.csv"
+
 def export_items_to_csv():
-    with open ('magazyn.csv', mode='w') as csv_file:
+    with open (csv_path, mode='w') as csv_file:
         fieldnames = ['name', 'quantity', 'unit', 'unit_price']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
@@ -25,11 +26,7 @@ def load_items_from_csv(csv_path):
     print ("Successfully loaded data from magazyn.csv")
     return items
 
-if __name__ == "__main__":
-    csv_path = sys.argv[1]  
-    items = load_items_from_csv(csv_path)
-    print(items)
-        
+          
 sold_items = [ ]
 
 def get_items(): 
@@ -101,15 +98,19 @@ while action != "exit":
         if action == "save":
             export_items_to_csv()
         if action == "load":
-            load_items_from_csv()
+            load_items_from_csv(csv_path)
         if action == "exit":
             print("Exiting... Bye-bye!")
             exit()
     else:
         print("Oops, wrong choice. Please enter again.")
 
-        
-       
+
+if __name__ == "__main__":
+    csv_path = sys.argv[1]  
+    items = load_items_from_csv(csv_path)
+    print(items)
+
 
 
 
